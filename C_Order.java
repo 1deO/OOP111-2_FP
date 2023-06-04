@@ -10,6 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JSpinner;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.SpinnerNumberModel;
 
 public class C_Order extends JFrame {
 
@@ -45,26 +49,26 @@ public class C_Order extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("菜單Menu");
-		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		lblNewLabel.setBounds(15, 5, 130, 30);
+		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		contentPane.add(lblNewLabel);
 		
+		JTextArea taMenu = new JTextArea();
+		taMenu.setBounds(10, 40, 300, 225);
+		contentPane.add(taMenu);
+		
 		JLabel lblNewLabel_1 = new JLabel("購物車");
-		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(325, 5, 130, 30);
+		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		contentPane.add(lblNewLabel_1);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 40, 300, 270);
-		contentPane.add(textArea);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(320, 40, 155, 270);
-		contentPane.add(textArea_1);
+		JTextArea taCart = new JTextArea();
+		taCart.setBounds(320, 40, 155, 270);
+		contentPane.add(taCart);
 		
 		JButton btnReturn = new JButton("返回Return");
-		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		btnReturn.setBounds(15, 320, 110, 30);
+		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Consumer buyerFrame;
@@ -80,8 +84,8 @@ public class C_Order extends JFrame {
 		contentPane.add(btnReturn);
 		
 		JButton btnAddToCart = new JButton("加入購物車AddToCart");
-		btnAddToCart.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		btnAddToCart.setBounds(130, 320, 180, 30);
+		btnAddToCart.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		btnAddToCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//add to database
@@ -90,8 +94,8 @@ public class C_Order extends JFrame {
 		contentPane.add(btnAddToCart);
 		
 		JButton btnPayment = new JButton("結帳Payment");
-		btnPayment.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		btnPayment.setBounds(325, 320, 145, 30);
+		btnPayment.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		btnPayment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -100,6 +104,28 @@ public class C_Order extends JFrame {
 			}
 		});
 		contentPane.add(btnPayment);
+		
+		JLabel lblQuantity = new JLabel("數量Quantity");
+		lblQuantity.setBounds(169, 280, 97, 30);
+		lblQuantity.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		contentPane.add(lblQuantity);
+		
+		JSpinner spinner_q = new JSpinner();
+		spinner_q.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+		spinner_q.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		spinner_q.setBounds(270, 280, 40, 30);
+		contentPane.add(spinner_q);
+		
+		JLabel lblID = new JLabel("商品代號ID");
+		lblID.setBounds(15, 280, 85, 30);
+		lblID.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		contentPane.add(lblID);
+		
+		JSpinner spinner_ID = new JSpinner();
+		spinner_ID.setModel(new SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+		spinner_ID.setBounds(102, 280, 40, 30);
+		spinner_ID.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		contentPane.add(spinner_ID);
+		
 	}
-
 }

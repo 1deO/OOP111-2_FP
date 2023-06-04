@@ -10,10 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
+import javax.swing.JScrollBar;
 
 public class C_Reviews extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -49,18 +53,19 @@ public class C_Reviews extends JFrame {
 		lblNewLabel.setBounds(15, 5, 130, 30);
 		contentPane.add(lblNewLabel);
 		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(10, 40, 300, 270);
+		contentPane.add(textArea);
+		
 		JLabel lblNewLabel_1 = new JLabel("請輸入您的評價：");
 		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
 		lblNewLabel_1.setBounds(325, 5, 130, 30);
 		contentPane.add(lblNewLabel_1);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 40, 300, 270);
-		contentPane.add(textArea);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(320, 40, 155, 270);
-		contentPane.add(textArea_1);
+		JTextArea taInput = new JTextArea();
+		taInput.setBounds(320, 40, 155, 270);
+		taInput.setLineWrap(true);
+		contentPane.add(taInput);
 		
 		JButton btnReturn = new JButton("返回Return");
 		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
@@ -89,5 +94,4 @@ public class C_Reviews extends JFrame {
 		});
 		contentPane.add(btnSend);
 	}
-
 }
