@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
@@ -49,8 +50,14 @@ public class WelcomePage extends JFrame {
 		btnBuyer.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
 		btnBuyer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUI_Consumer cc = new GUI_Consumer();
-				cc.setVisible(true);
+				GUI_Consumer buyerFrame;
+				try {
+					buyerFrame = new GUI_Consumer();
+					buyerFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		contentPane.setLayout(null);
