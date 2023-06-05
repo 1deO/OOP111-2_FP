@@ -39,7 +39,7 @@ public class WelcomePage extends JFrame {
 	 */
 	public WelcomePage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -48,9 +48,9 @@ public class WelcomePage extends JFrame {
 		
 		JButton btnBuyer = new JButton("買家Buyer");
 		btnBuyer.setBackground(new Color(224, 255, 255));
-		btnBuyer.setBounds(60, 169, 120, 40);
+		btnBuyer.setBounds(65, 250, 150, 50);
 		btnBuyer.setForeground(new Color(0, 0, 0));
-		btnBuyer.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		btnBuyer.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnBuyer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Consumer buyerFrame;
@@ -68,8 +68,8 @@ public class WelcomePage extends JFrame {
 		
 		JButton btnSeller = new JButton("賣家Seller");
 		btnSeller.setBackground(new Color(224, 255, 255));
-		btnSeller.setBounds(266, 169, 120, 40);
-		btnSeller.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		btnSeller.setBounds(285, 250, 150, 50);
+		btnSeller.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnSeller.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Seller sellerFrame;
@@ -85,8 +85,8 @@ public class WelcomePage extends JFrame {
 		contentPane.add(btnSeller);
 		
 		JLabel lbWelcome = new JLabel("Welcome");
-		lbWelcome.setBounds(180, 70, 85, 53);
-		lbWelcome.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		lbWelcome.setBounds(184, 116, 136, 53);
+		lbWelcome.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		lbWelcome.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbWelcome);
 	}

@@ -39,7 +39,7 @@ public class C_Info extends JFrame {
 	public C_Info() {
 		setTitle("檢視店家資訊");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -47,27 +47,29 @@ public class C_Info extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("菜單Menu");
-		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		lblNewLabel.setBounds(15, 5, 130, 30);
+		JLabel lblNewLabel = new JLabel("菜單 Menu");
+		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		lblNewLabel.setBounds(30, 10, 130, 40);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("營業資訊");
-		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(325, 5, 130, 30);
-		contentPane.add(lblNewLabel_1);
-		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 40, 300, 270);
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		textArea.setBounds(25, 55, 310, 330);
 		contentPane.add(textArea);
 		
+		JLabel lblNewLabel_1 = new JLabel("營業資訊");
+		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(360, 10, 130, 40);
+		contentPane.add(lblNewLabel_1);
+		
 		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(320, 40, 155, 270);
+		textArea_1.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		textArea_1.setBounds(355, 55, 310, 330);
 		contentPane.add(textArea_1);
 		
-		JButton btnReturn = new JButton("返回Return");
-		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		btnReturn.setBounds(15, 320, 110, 30);
+		JButton btnReturn = new JButton("返回 Return");
+		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnReturn.setBounds(30, 400, 150, 40);
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Consumer buyerFrame;

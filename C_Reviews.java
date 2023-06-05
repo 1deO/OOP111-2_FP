@@ -42,7 +42,7 @@ public class C_Reviews extends JFrame {
 	public C_Reviews() {
 		setTitle("評價回饋");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,28 +50,30 @@ public class C_Reviews extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("所有評價");
-		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		lblNewLabel.setBounds(15, 5, 130, 30);
+		JLabel lblNewLabel = new JLabel("所有評價 All reviews");
+		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		lblNewLabel.setBounds(30, 10, 219, 40);
 		contentPane.add(lblNewLabel);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(10, 40, 300, 270);
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		textArea.setBounds(25, 55, 310, 330);
 		contentPane.add(textArea);
 		
 		JLabel lblNewLabel_1 = new JLabel("請輸入您的評價：");
-		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		lblNewLabel_1.setBounds(325, 5, 130, 30);
+		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(360, 10, 168, 40);
 		contentPane.add(lblNewLabel_1);
 		
 		JTextArea taInput = new JTextArea();
-		taInput.setBounds(320, 40, 155, 270);
-		taInput.setLineWrap(true);
+		taInput.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		taInput.setBounds(355, 55, 310, 330);
+		taInput.setLineWrap(true);//字填滿框就換行
 		contentPane.add(taInput);
 		
-		JButton btnReturn = new JButton("返回Return");
-		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		btnReturn.setBounds(15, 320, 110, 30);
+		JButton btnReturn = new JButton("返回 Return");
+		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnReturn.setBounds(30, 400, 150, 40);
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Consumer buyerFrame;
@@ -87,8 +89,8 @@ public class C_Reviews extends JFrame {
 		contentPane.add(btnReturn);
 		
 		JButton btnSend = new JButton("確認送出Send");
-		btnSend.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		btnSend.setBounds(325, 320, 145, 30);
+		btnSend.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnSend.setBounds(484, 400, 176, 40);
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//

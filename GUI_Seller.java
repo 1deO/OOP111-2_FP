@@ -11,6 +11,7 @@ import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.event.*;
 import java.awt.EventQueue;
+import javax.swing.border.CompoundBorder;
 
 public class GUI_Seller extends JFrame{
 	private JFrame frame;
@@ -47,13 +48,16 @@ public class GUI_Seller extends JFrame{
 	}
 	
 	public GUI_Seller() throws SQLException{
+		getContentPane().setBackground(new Color(245, 245, 245));
 		this.setTitle("店家介面");
-		setBounds(100, 100, 731, 467);
+		setBounds(100, 100, 700, 500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
 		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(245, 245, 245));
+		panel_1.setBorder(null);
 		panel_1.setBounds(0, 10, 717, 34);
 		panel_1.setLayout(null);
 		
@@ -63,63 +67,75 @@ public class GUI_Seller extends JFrame{
 		panel_1.add(firmLabel);
 		
 		firmCombo = new JComboBox();
+		firmCombo.setBackground(new Color(250, 250, 250));
 		firmCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"極鮮滷味", "允浩自助餐", "血盅紅"}));
 		firmCombo.setBounds(298, 0, 126, 34);
 		panel_1.add(firmCombo);
 		
 		confirmButton = new JButton("確認");
-		confirmButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(153, 180, 209), Color.CYAN));
+		confirmButton.setForeground(new Color(0, 0, 0));
+		confirmButton.setBackground(new Color(250, 250, 250));
 		confirmButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		confirmButton.setBounds(474, 0, 102, 34);
 		
 		panel_1.add(confirmButton);
 		
 		panel_2 = new JPanel();
-		panel_2.setBackground(Color.LIGHT_GRAY);
+		panel_2.setBackground(new Color(220, 220, 220));
 		panel_2.setBorder(new EtchedBorder(EtchedBorder.LOWERED, Color.LIGHT_GRAY, null));
-		panel_2.setBounds(0, 46, 717, 384);
+		panel_2.setBounds(10, 54, 670, 384);
 		panel_2.setLayout(null);
 		
 		itemLabel = new JLabel("販售品項");
-		itemLabel.setForeground(Color.RED);
+		itemLabel.setBounds(20, 10, 136, 38);
+		itemLabel.setForeground(new Color(178, 34, 34));
 		itemLabel.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 24));
-		itemLabel.setBounds(10, 10, 136, 38);
 		panel_2.add(itemLabel);
 		
 		infoLabel = new JLabel("營業資訊");
-		infoLabel.setForeground(Color.RED);
+		infoLabel.setBounds(345, 10, 136, 38);
+		infoLabel.setForeground(new Color(178, 34, 34));
 		infoLabel.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 24));
-		infoLabel.setBounds(382, 10, 136, 38);
 		panel_2.add(infoLabel);
 		
 		itemArea = new JTextArea();
-		itemArea.setBounds(10, 48, 325, 225);
+		itemArea.setBounds(15, 55, 305, 240);
 		panel_2.add(itemArea);
 		
 		infoArea = new JTextArea();
-		infoArea.setBounds(382, 48, 325, 225);
+		infoArea.setBounds(340, 55, 310, 240);
 		panel_2.add(infoArea);
 		
-		addButton = new JButton("新增");
-		addButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(153, 180, 209), Color.CYAN));
-		addButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 24));
-		addButton.setBounds(23, 294, 92, 45);
+		addButton = new JButton("新增 New");
+		addButton.setForeground(new Color(0, 0, 0));
+		addButton.setBackground(new Color(245, 255, 245));
+		addButton.setBounds(20, 320, 120, 45);
+		addButton.setBorder(new CompoundBorder());
+		addButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		panel_2.add(addButton);
 		
-		delButton = new JButton("刪除");
-		delButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 24));
-		delButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(153, 180, 209), Color.CYAN));
-		delButton.setBounds(161, 294, 92, 45);
+		delButton = new JButton("刪除 Delete");
+		delButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		delButton.setForeground(new Color(0, 0, 0));
+		delButton.setBackground(new Color(255, 245, 245));
+		delButton.setBounds(160, 320, 135, 45);
+		delButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		delButton.setBorder(new CompoundBorder());
 		panel_2.add(delButton);
 		
-		modButton = new JButton("修改");
-		modButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 24));
-		modButton.setBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(153, 180, 209), Color.CYAN));
-		modButton.setBounds(298, 294, 92, 45);
+		modButton = new JButton("修改 Edit");
+		modButton.setForeground(new Color(0, 0, 0));
+		modButton.setBackground(new Color(245, 245, 255));
+		modButton.setBounds(315, 320, 120, 45);
+		modButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		modButton.setBorder(new CompoundBorder());
 		panel_2.add(modButton);
-		this.add(panel_1);
-		this.add(panel_2);
+		getContentPane().add(panel_1);
+		getContentPane().add(panel_2);
 	}
 
 }

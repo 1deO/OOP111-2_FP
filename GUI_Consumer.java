@@ -54,7 +54,7 @@ public class GUI_Consumer extends JFrame {
 		//stat = conn.createStatement();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 400);
+		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(245, 245, 245));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,15 +64,15 @@ public class GUI_Consumer extends JFrame {
 		
 		//List
 		JLabel lbList = new JLabel("店家清單List");
-		lbList.setBounds(30, 10, 81, 30);
-		lbList.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
+		lbList.setBounds(30, 10, 120, 40);
+		lbList.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		lbList.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(lbList);
 		
 		//Info
 		JButton btnInfo = new JButton("資訊Info");
-		btnInfo.setBounds(95, 300, 100, 35);
-		btnInfo.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
+		btnInfo.setBounds(95, 400, 115, 40);
+		btnInfo.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -84,8 +84,8 @@ public class GUI_Consumer extends JFrame {
 		
 		//reviews
 		JButton btnReviews = new JButton("評價Reviews");
-		btnReviews.setBounds(205, 300, 125, 35);
-		btnReviews.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
+		btnReviews.setBounds(230, 400, 150, 40);
+		btnReviews.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
 		btnReviews.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -97,8 +97,8 @@ public class GUI_Consumer extends JFrame {
 		
 		//order
 		JButton btnOrder = new JButton("預訂Order");
-		btnOrder.setBounds(340, 300, 115, 35);
-		btnOrder.setFont(new Font("微軟正黑體", Font.PLAIN, 14));
+		btnOrder.setBounds(400, 400, 130, 40);
+		btnOrder.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -110,8 +110,8 @@ public class GUI_Consumer extends JFrame {
 		
 		//textArea
 		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		textArea.setBounds(30, 42, 425, 236);
+		textArea.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		textArea.setBounds(25, 55, 640, 330);
 		textArea.setEditable(false);
 		/*
 		String query = "SELECT * FROM `TWICE` WHERE 1";
@@ -127,8 +127,8 @@ public class GUI_Consumer extends JFrame {
 		//spinner_chooseID
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
-		spinner.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 14));
-		spinner.setBounds(30, 300, 47, 35);
+		spinner.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		spinner.setBounds(30, 400, 50, 40);
 		contentPane.add(spinner);
 		
 	}
