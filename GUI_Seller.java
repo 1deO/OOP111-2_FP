@@ -54,7 +54,7 @@ public class GUI_Seller extends JFrame{
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		stat.createStatement();
+		stat = conn.createStatement();
 		
 		panel_1 = new JPanel();
 		panel_1.setBackground(new Color(245, 245, 245));
@@ -70,7 +70,7 @@ public class GUI_Seller extends JFrame{
 		firmCombo = new JComboBox();
 		firmCombo.setBackground(new Color(250, 250, 250));
 		firmCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"極鮮滷味", "允浩自助餐", "血盅紅"}));
+		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"集英樓", "政大小吃部", "盛奇士", "H.I.Feeling", "伊果咖啡"}));
 		firmCombo.setBounds(298, 0, 126, 34);
 		panel_1.add(firmCombo);
 		
