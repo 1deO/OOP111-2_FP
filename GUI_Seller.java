@@ -1,6 +1,5 @@
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-
 import java.sql.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -70,7 +69,8 @@ public class GUI_Seller extends JFrame{
 		firmCombo = new JComboBox();
 		firmCombo.setBackground(new Color(250, 250, 250));
 		firmCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"集英樓", "政大小吃部", "盛奇士", "H.I.Feeling", "伊果咖啡"}));
+		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"集英樓", "政大小吃部", "盛奇士", "H.I.Feeling", "伊果咖啡", "越南麵包"
+				, "貍66日式炒麵", "新巨輪海海人生", "日式行丼餐車", "胖都日式脆皮雞蛋糕"}));
 		firmCombo.setBounds(298, 0, 126, 34);
 		panel_1.add(firmCombo);
 		
@@ -185,5 +185,5 @@ public class GUI_Seller extends JFrame{
 		output += "\n";
 		return output;
 	}
-
+	
 }
