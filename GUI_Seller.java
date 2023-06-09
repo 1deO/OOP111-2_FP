@@ -185,4 +185,5 @@ public class GUI_Seller extends JFrame{
 		output += "\n";
 		return output;
 	}
+	
 }
