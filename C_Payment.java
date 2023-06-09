@@ -3,8 +3,12 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +20,7 @@ import javax.swing.JRadioButton;
 public class C_Payment extends JFrame {
 
 	private JPanel contentPane;
+	Statement stat;
 
 	/**
 	 * Launch the application.
@@ -23,20 +28,33 @@ public class C_Payment extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					C_Payment frame = new C_Payment();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				
+			String server = "jdbc:mysql://140.119.19.73:3315/";
+			String database = "111306079"; // change to your own database
+			String url = server + database + "?useSSL=false";
+			String username = "111306079"; // change to your own user name
+			String password = "d7w00"; // change to your own password　　　　
+			
+			try {
+				Connection conn = DriverManager.getConnection(url, username, password);
+				System.out.println("DB Connected");
+				
+				C_Payment frame = new C_Payment(conn);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			}
 		});
 	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public C_Payment() {
+	public C_Payment(Connection conn) throws SQLException {
 		setTitle("結帳");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -46,6 +64,7 @@ public class C_Payment extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		stat = conn.createStatement();
 		
 		JLabel lblNewLabel = new JLabel("訂單明細");
 		lblNewLabel.setBounds(30, 10, 219, 40);
@@ -74,7 +93,7 @@ public class C_Payment extends JFrame {
 				//send order to Seller
 				GUI_Consumer buyerFrame;
 				try {
-					buyerFrame = new GUI_Consumer();
+					buyerFrame = new GUI_Consumer(conn);
 					buyerFrame.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -106,5 +125,10 @@ public class C_Payment extends JFrame {
 		rdbtnLINEPay.setBounds(240, 410, 110, 30);
 		rdbtnLINEPay.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		contentPane.add(rdbtnLINEPay);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(rdbtnCash);
+		group.add(rdbtnPaypal);
+		group.add(rdbtnLINEPay);
 	}
 }

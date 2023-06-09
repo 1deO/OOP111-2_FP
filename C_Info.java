@@ -8,7 +8,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JTextArea;
 import javax.swing.JButton;
@@ -16,17 +19,29 @@ import javax.swing.JButton;
 public class C_Info extends JFrame {
 
 	private JPanel contentPane;
-
+	Statement stat;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				
+				String server = "jdbc:mysql://140.119.19.73:3315/";
+				String database = "111306079"; // change to your own database
+				String url = server + database + "?useSSL=false";
+				String username = "111306079"; // change to your own user name
+				String password = "d7w00"; // change to your own password　　　　
+				
 				try {
-					C_Info frame = new C_Info();
+					Connection conn = DriverManager.getConnection(url, username, password);
+					System.out.println("DB Connected");
+					
+					C_Info frame = new C_Info(conn);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
-				} catch (Exception e) {
+			
+				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
@@ -35,8 +50,9 @@ public class C_Info extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public C_Info() {
+	public C_Info(Connection conn) throws SQLException {
 		setTitle("檢視店家資訊");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -46,6 +62,7 @@ public class C_Info extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		stat = conn.createStatement();
 		
 		JLabel lblNewLabel = new JLabel("菜單 Menu");
 		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
@@ -74,7 +91,7 @@ public class C_Info extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Consumer buyerFrame;
 				try {
-					buyerFrame = new GUI_Consumer();
+					buyerFrame = new GUI_Consumer(conn);
 					buyerFrame.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

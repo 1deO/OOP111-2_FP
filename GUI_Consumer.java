@@ -32,9 +32,9 @@ public class GUI_Consumer extends JFrame {
 				
 				try {
 					Connection conn = DriverManager.getConnection(url, username, password);
-					System.out.println("DB Connectd");
+					System.out.println("DB Connected");
 					
-					GUI_Consumer frame = new GUI_Consumer();
+					GUI_Consumer frame = new GUI_Consumer(conn);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
 			
@@ -48,10 +48,7 @@ public class GUI_Consumer extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUI_Consumer() throws SQLException{
-		//Connection conn ;
-		
-		//stat = conn.createStatement();
+	public GUI_Consumer(Connection conn) throws SQLException{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -61,6 +58,7 @@ public class GUI_Consumer extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		stat = conn.createStatement();
 		
 		//List
 		JLabel lbList = new JLabel("店家清單List");
@@ -76,8 +74,14 @@ public class GUI_Consumer extends JFrame {
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				C_Info infoFrame = new C_Info();
-				infoFrame.setVisible(true);
+				C_Info infoFrame;
+				try {
+					infoFrame = new C_Info(conn);
+					infoFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		contentPane.add(btnInfo);
@@ -89,8 +93,14 @@ public class GUI_Consumer extends JFrame {
 		btnReviews.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				C_Reviews reviewsFrame = new C_Reviews();
-				reviewsFrame.setVisible(true);
+				C_Reviews reviewsFrame;
+				try {
+					reviewsFrame = new C_Reviews(conn);
+					reviewsFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		contentPane.add(btnReviews);
@@ -102,8 +112,14 @@ public class GUI_Consumer extends JFrame {
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				C_Order orderFrame = new C_Order();
-				orderFrame.setVisible(true);
+				C_Order orderFrame;
+				try {
+					orderFrame = new C_Order(conn);
+					orderFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		contentPane.add(btnOrder);
@@ -112,16 +128,18 @@ public class GUI_Consumer extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		textArea.setBounds(25, 55, 640, 330);
-		textArea.setEditable(false);
-		/*
-		String query = "SELECT * FROM `TWICE` WHERE 1";
-		boolean sucess = stat.execute(query);
-		if (sucess) {
-			ResultSet result = stat.getResultSet();
+		
+		//String firm = (String)firmCombo.getSelectedItem();
+		String query = "";
+		try {
+			stat.execute(query);
+			ResultSet result = stat.executeQuery(query);
 			textArea.setText(showResultSet(result));
-			result.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		*/
+		
 		contentPane.add(textArea);
 		
 		//spinner_chooseID

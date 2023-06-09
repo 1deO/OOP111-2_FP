@@ -3,7 +3,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +22,7 @@ public class C_Reviews extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	Statement stat;
 
 	/**
 	 * Launch the application.
@@ -26,20 +30,33 @@ public class C_Reviews extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					C_Reviews frame = new C_Reviews();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			
+			String server = "jdbc:mysql://140.119.19.73:3315/";
+			String database = "111306079"; // change to your own database
+			String url = server + database + "?useSSL=false";
+			String username = "111306079"; // change to your own user name
+			String password = "d7w00"; // change to your own password　　　　
+			
+			try {
+				Connection conn = DriverManager.getConnection(url, username, password);
+				System.out.println("DB Connected");
+				
+				C_Reviews frame = new C_Reviews(conn);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			}
 		});
 	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public C_Reviews() {
+	public C_Reviews(Connection conn) throws SQLException {
 		setTitle("評價回饋");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -49,6 +66,7 @@ public class C_Reviews extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		stat = conn.createStatement();
 		
 		JLabel lblNewLabel = new JLabel("所有評價 All reviews");
 		lblNewLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
@@ -78,7 +96,7 @@ public class C_Reviews extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Consumer buyerFrame;
 				try {
-					buyerFrame = new GUI_Consumer();
+					buyerFrame = new GUI_Consumer(conn);
 					buyerFrame.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block

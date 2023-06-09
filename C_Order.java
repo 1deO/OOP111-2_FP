@@ -3,7 +3,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +22,7 @@ import javax.swing.SpinnerNumberModel;
 public class C_Order extends JFrame {
 
 	private JPanel contentPane;
+	Statement stat;
 
 	/**
 	 * Launch the application.
@@ -26,20 +30,33 @@ public class C_Order extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					C_Order frame = new C_Order();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+			
+			String server = "jdbc:mysql://140.119.19.73:3315/";
+			String database = "111306079"; // change to your own database
+			String url = server + database + "?useSSL=false";
+			String username = "111306079"; // change to your own user name
+			String password = "d7w00"; // change to your own password　　　　
+			
+			try {
+				Connection conn = DriverManager.getConnection(url, username, password);
+				System.out.println("DB Connected");
+				
+				C_Order frame = new C_Order(conn);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			}
 		});
 	}
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public C_Order() {
+	public C_Order(Connection conn) throws SQLException {
 		setTitle("線上預訂");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
@@ -49,6 +66,7 @@ public class C_Order extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		stat = conn.createStatement();
 		
 		JLabel lblNewLabel = new JLabel("菜單 Menu");
 		lblNewLabel.setBounds(30, 10, 219, 40);
@@ -77,7 +95,7 @@ public class C_Order extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GUI_Consumer buyerFrame;
 				try {
-					buyerFrame = new GUI_Consumer();
+					buyerFrame = new GUI_Consumer(conn);
 					buyerFrame.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -103,8 +121,14 @@ public class C_Order extends JFrame {
 		btnPayment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				C_Payment paymentFrame = new C_Payment();
-				paymentFrame.setVisible(true);
+				C_Payment paymentFrame;
+				try {
+					paymentFrame = new C_Payment(conn);
+					paymentFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		contentPane.add(btnPayment);

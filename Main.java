@@ -19,7 +19,7 @@ public class Main {
 			Connection conn = DriverManager.getConnection(url, username, password);
 			System.out.println("DB Connectd");
 			
-			GUI_Consumer frame = new GUI_Consumer();
+			GUI_Consumer frame = new GUI_Consumer(conn);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
 	
