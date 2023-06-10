@@ -49,7 +49,10 @@ public class GUI_Consumer extends JFrame {
 	 * Create the frame.
 	 */
 	public GUI_Consumer(Connection conn) throws SQLException{
-		
+		String query;
+		String str = new String();
+		int temp;
+		boolean sucess;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
@@ -128,13 +131,16 @@ public class GUI_Consumer extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		textArea.setBounds(25, 55, 640, 330);
+		textArea.setEditable(false);
 		
 		//String firm = (String)firmCombo.getSelectedItem();
-		String query = "";
+		query = "SELECT Name FROM businessInfo WHERE 1;";
 		try {
 			stat.execute(query);
 			ResultSet result = stat.executeQuery(query);
-			textArea.setText(showResultSet(result));
+			str=showResultSet(result).replace("Name", "").replace(" ", "");
+			textArea.setText(str);
+			result.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
