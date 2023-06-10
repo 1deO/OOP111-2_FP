@@ -19,6 +19,7 @@ public class GUI_Seller extends JFrame{
 	private JButton confirmButton, addButton, delButton, modButton;
 	private JComboBox firmCombo;
 	private JPanel panel_1, panel_2;
+	private String storeID;
 	Statement stat;
 	
 	public static void main(String[] args) {
@@ -82,11 +83,25 @@ public class GUI_Seller extends JFrame{
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String firm = (String)firmCombo.getSelectedItem();
-				String query = "SELECT * FROM `businessInfo` WHERE Name = '" + firm + "'";
+				switch(firm){
+					case "集英樓" : storeID = "A1"; break;
+					case "政大小吃部" : storeID = "A2"; break;
+					case "盛奇士" : storeID = "A3"; break;
+					case "H.I.Feeling" : storeID = "A4"; break;
+					case "伊果咖啡" : storeID = "A5"; break;
+					case "越南麵包" : storeID = "B6"; break;
+					case "貍66日式炒麵" : storeID = "B7"; break;
+					case "新巨輪海海人生" : storeID = "B8"; break;
+					case "日式行丼餐車" : storeID = "B9"; break;
+					case "胖都日式脆皮雞蛋糕" : storeID = "B10"; break;
+				}
+				String query1 = "SELECT * FROM `menu` WHERE StoreID = '" + storeID + "'";
+				String query2 = "SELECT * FROM `businessInfo` WHERE Name = '" + firm + "'";
 				try {
-					stat.execute(query);
-					ResultSet result = stat.executeQuery(query);
-					infoArea.setText(showResultSet(result));
+					ResultSet result1 = stat.executeQuery(query1);
+					itemArea.setText(showResultSet1(result1));
+					ResultSet result2 = stat.executeQuery(query2);
+					infoArea.setText(showResultSet2(result2));
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -115,10 +130,12 @@ public class GUI_Seller extends JFrame{
 		
 		itemArea = new JTextArea();
 		itemArea.setBounds(15, 55, 305, 240);
+		itemArea.setEditable(false);
 		panel_2.add(itemArea);
 		
 		infoArea = new JTextArea();
 		infoArea.setBounds(340, 55, 310, 240);
+		infoArea.setEditable(false);
 		panel_2.add(infoArea);
 		
 		addButton = new JButton("新增 New");
@@ -130,10 +147,37 @@ public class GUI_Seller extends JFrame{
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				JFrame addFrame = new JFrame();
-				String getName = JOptionPane.showInputDialog(addFrame, "新增項目名稱:");
-				String getPrice = JOptionPane.showInputDialog(addFrame, "價格:");
-				//String op = ;
-				
+				String name = JOptionPane.showInputDialog(addFrame, "新增項目名稱:");
+				String price = JOptionPane.showInputDialog(addFrame, "價格:");
+				String isAvail = JOptionPane.showInputDialog(addFrame, "目前是否供應");
+				String supply = JOptionPane.showInputDialog(addFrame, "供應數量");
+				String firm = (String)firmCombo.getSelectedItem();
+				switch(firm){
+					case "集英樓" : storeID = "A1"; break;
+					case "政大小吃部" : storeID = "A2"; break;
+					case "盛奇士" : storeID = "A3"; break;
+					case "H.I.Feeling" : storeID = "A4"; break;
+					case "伊果咖啡" : storeID = "A5"; break;
+					case "越南麵包" : storeID = "B6"; break;
+					case "貍66日式炒麵" : storeID = "B7"; break;
+					case "新巨輪海海人生" : storeID = "B8"; break;
+					case "日式行丼餐車" : storeID = "B9"; break;
+					case "胖都日式脆皮雞蛋糕" : storeID = "B10"; break;
+				}
+				String query = "INSERT INTO `menu` (StoreID,Product,Price,isAvail,Supply) VALUES ('" + storeID + "','" + name
+						+ "','" + price + "','" + isAvail + "','" + supply + "')";
+				String query1 = "SELECT * FROM `menu` WHERE StoreID = '" + storeID + "'";
+				String query2 = "SELECT * FROM `businessInfo` WHERE Name = '" + firm + "'";
+				try {
+					stat.execute(query);
+					ResultSet result1 = stat.executeQuery(query1);
+					itemArea.setText(showResultSet1(result1));
+					ResultSet result2 = stat.executeQuery(query2);
+					infoArea.setText(showResultSet2(result2));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		panel_2.add(addButton);
@@ -151,8 +195,33 @@ public class GUI_Seller extends JFrame{
 		delButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				JFrame delFrame = new JFrame();
-				String getName = JOptionPane.showInputDialog(delFrame, "刪除項目名稱:");
-				//for
+				String product = JOptionPane.showInputDialog(delFrame, "刪除項目名稱:");
+				String query = "DELETE FROM `menu` WHERE Product = '" + product + "'";
+				String firm = (String)firmCombo.getSelectedItem();
+				switch(firm){
+					case "集英樓" : storeID = "A1"; break;
+					case "政大小吃部" : storeID = "A2"; break;
+					case "盛奇士" : storeID = "A3"; break;
+					case "H.I.Feeling" : storeID = "A4"; break;
+					case "伊果咖啡" : storeID = "A5"; break;
+					case "越南麵包" : storeID = "B6"; break;
+					case "貍66日式炒麵" : storeID = "B7"; break;
+					case "新巨輪海海人生" : storeID = "B8"; break;
+					case "日式行丼餐車" : storeID = "B9"; break;
+					case "胖都日式脆皮雞蛋糕" : storeID = "B10"; break;
+				}
+				String query1 = "SELECT * FROM `menu` WHERE StoreID = '" + storeID + "'";
+				String query2 = "SELECT * FROM `businessInfo` WHERE Name = '" + firm + "'";
+				try {
+					stat.execute(query);
+					ResultSet result1 = stat.executeQuery(query1);
+					itemArea.setText(showResultSet1(result1));
+					ResultSet result2 = stat.executeQuery(query2);
+					infoArea.setText(showResultSet2(result2));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		panel_2.add(delButton);
@@ -165,14 +234,70 @@ public class GUI_Seller extends JFrame{
 		modButton.setBorder(new CompoundBorder());
 		modButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				
+				String firm = (String)firmCombo.getSelectedItem();
+				switch(firm){
+				case "集英樓" : storeID = "A1"; break;
+				case "政大小吃部" : storeID = "A2"; break;
+				case "盛奇士" : storeID = "A3"; break;
+				case "H.I.Feeling" : storeID = "A4"; break;
+				case "伊果咖啡" : storeID = "A5"; break;
+				case "越南麵包" : storeID = "B6"; break;
+				case "貍66日式炒麵" : storeID = "B7"; break;
+				case "新巨輪海海人生" : storeID = "B8"; break;
+				case "日式行丼餐車" : storeID = "B9"; break;
+				case "胖都日式脆皮雞蛋糕" : storeID = "B10"; break;
+				}
+				JFrame modFrame = new JFrame();
+				String[] block = {"販賣品項", "營業資訊"};
+				String modBlock = (String) JOptionPane.showInputDialog(modFrame, "請輸入修改區塊", "", JOptionPane.QUESTION_MESSAGE, null, block, block[0]);	
+				String query1 = "SELECT * FROM `menu` WHERE StoreID = '" + storeID + "'";
+				String query2 = "SELECT * FROM `businessInfo` WHERE Name = '" + firm + "'";
+				try {
+					if(modBlock.equals("販賣品項")) {
+						String productName = JOptionPane.showInputDialog(modFrame, "請輸入產品名稱");
+						String columnLabel = JOptionPane.showInputDialog(modFrame, "請輸入修改欄位名稱:");
+						String content = JOptionPane.showInputDialog(modFrame, "請輸入修改內容:");
+						String query = "update menu set " + columnLabel + " = " + content + " where Product = '" + productName + "'";
+						stat.execute(query);
+					}else if(modBlock.equals("營業資訊")) {
+						String columnLabel = JOptionPane.showInputDialog(modFrame, "請輸入修改項目名稱:");
+						String content = JOptionPane.showInputDialog(modFrame, "請輸入修改內容:");
+						String query = "update businessInfo set " + columnLabel + " = '" + content + "' where StoreID = '" + storeID + "'";
+						stat.execute(query);
+					}
+					ResultSet result1 = stat.executeQuery(query1);
+					itemArea.setText(showResultSet1(result1));
+					ResultSet result2 = stat.executeQuery(query2);
+					infoArea.setText(showResultSet2(result2));
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		panel_2.add(modButton);
 		getContentPane().add(panel_1);
 		getContentPane().add(panel_2);
 	}
-	public static String showResultSet(ResultSet result) throws SQLException {
+	
+	public static String showResultSet1(ResultSet result) throws SQLException {
+		ResultSetMetaData metaData = result.getMetaData();
+		int columnCount = metaData.getColumnCount();
+		String output = "";
+		for (int i = 1; i <= columnCount; i++) {
+			output += String.format("%-12s", metaData.getColumnLabel(i));
+		}
+		output += "\n";
+		while (result.next()) {
+			for (int i = 1; i <= columnCount; i++) {
+				output += String.format("%-12s", result.getString(i));
+			}
+			output += "\n";
+		}
+		return output;
+	}
+	
+	public static String showResultSet2(ResultSet result) throws SQLException {
 		ResultSetMetaData metaData = result.getMetaData();
 		int columnCount = metaData.getColumnCount();
 		String output = "";
@@ -185,5 +310,4 @@ public class GUI_Seller extends JFrame{
 		output += "\n";
 		return output;
 	}
-	
 }
