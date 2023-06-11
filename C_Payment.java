@@ -125,15 +125,15 @@ public class C_Payment extends JFrame {
 				//send order to Seller
 				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
 					
-			    	if (rdbtnCash.isSelected()) {
-			        	return "Cash";
-			    	}
-			    	if (rdbtnPaypal.isSelected()) {
-			        	return "Paypal";
-			    	}
-			    	if (rdbtnLINEPay.isSelected()) {
-			        	return "LINE pay";
-			    	}
+			    	String paymentWay = "";
+			    	
+				    if (rdbtnCash.isSelected()) {
+				    	paymentWay = "Cash";
+				    }else if (rdbtnPaypal.isSelected()) {
+				    	paymentWay = "Paypal";
+				    }else if (rdbtnLINEPay.isSelected()) {
+				    	paymentWay = "LINE pay";
+				    }
 				}
 				
 				GUI_Consumer buyerFrame;
@@ -149,21 +149,7 @@ public class C_Payment extends JFrame {
 		contentPane.add(btnPayment);
 		
 	}
-	public String getSelectedButtonText(ButtonGroup buttonGroup) {
-		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
-			
-	    	if (rdbtnCash.isSelected()) {
-	        	return "";
-	    	}
-	    	if (rdbtnPaypal.isSelected()) {
-	        	return "";
-	    	}
-	    	if (rdbtnLINEPay.isSelected()) {
-	        	return "";
-	    	}
-		}
-	    return null;
-	}
+	
 	public static String showResultSet_3(ResultSet result) throws SQLException {
 		ResultSetMetaData metaData = result.getMetaData();
 		int columnCount = metaData.getColumnCount();
