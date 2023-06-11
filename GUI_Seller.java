@@ -63,7 +63,7 @@ public class GUI_Seller extends JFrame{
 		panel_1.setLayout(null);
 		
 		firmLabel = new JLabel("選擇你的店家：");
-		firmLabel.setBounds(217, 0, 145, 34);
+		firmLabel.setBounds(190, 0, 145, 34);
 		firmLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		panel_1.add(firmLabel);
 		
@@ -72,11 +72,12 @@ public class GUI_Seller extends JFrame{
 		firmCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"集英樓", "政大小吃部", "盛奇士", "H.I.Feeling", "伊果咖啡", "越南麵包"
 				, "貍66日式炒麵", "新巨輪海海人生", "日式行丼餐車", "胖都日式脆皮雞蛋糕"}));
-		firmCombo.setBounds(362, 0, 126, 34);
+		firmCombo.setBounds(335, 0, 170, 34);
 		panel_1.add(firmCombo);
 		
-		JButton btnReturn = new JButton("返回 Return");
-		btnReturn.setBounds(15, 0, 140, 34);
+		JButton btnReturn = new JButton("返回");
+		btnReturn.setBounds(15, 0, 100, 34);
+		btnReturn.setBackground(new Color(250, 250, 250));
 		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -91,7 +92,7 @@ public class GUI_Seller extends JFrame{
 		confirmButton.setForeground(new Color(0, 0, 0));
 		confirmButton.setBackground(new Color(250, 250, 250));
 		confirmButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		confirmButton.setBounds(516, 0, 102, 34);
+		confirmButton.setBounds(520, 0, 100, 34);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String firm = (String)firmCombo.getSelectedItem();
@@ -135,18 +136,20 @@ public class GUI_Seller extends JFrame{
 		panel_2.add(itemLabel);
 		
 		infoLabel = new JLabel("營業資訊");
-		infoLabel.setBounds(345, 10, 136, 38);
+		infoLabel.setBounds(385, 10, 136, 38);
 		infoLabel.setForeground(new Color(178, 34, 34));
 		infoLabel.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 24));
 		panel_2.add(infoLabel);
 		
 		itemArea = new JTextArea();
-		itemArea.setBounds(15, 55, 305, 240);
+		itemArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
+		itemArea.setBounds(15, 55, 345, 240);
 		itemArea.setEditable(false);
 		panel_2.add(itemArea);
 		
 		infoArea = new JTextArea();
-		infoArea.setBounds(340, 55, 310, 240);
+		infoArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
+		infoArea.setBounds(380, 55, 270, 240);
 		infoArea.setEditable(false);
 		panel_2.add(infoArea);
 		
@@ -294,6 +297,7 @@ public class GUI_Seller extends JFrame{
 		//S_order button
 		JButton btnOrder = new JButton("檢視訂單Orders");
 		btnOrder.setBounds(460, 320, 185, 45);
+		btnOrder.setBackground(new Color(250, 250, 250));
 		btnOrder.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		modButton.setBorder(new CompoundBorder());
 		btnOrder.addActionListener(new ActionListener() {

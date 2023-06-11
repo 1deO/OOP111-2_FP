@@ -80,18 +80,18 @@ public class C_Info extends JFrame {
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		textArea.setBounds(25, 55, 310, 330);
+		textArea.setBounds(25, 55, 290, 330);
 		textArea.setEditable(false);
 		contentPane.add(textArea);
 		
 		JLabel lblNewLabel_1 = new JLabel("營業資訊");
 		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(360, 10, 130, 40);
+		lblNewLabel_1.setBounds(340, 10, 130, 40);
 		contentPane.add(lblNewLabel_1);
 		
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		textArea_1.setBounds(355, 55, 310, 330);
+		textArea_1.setBounds(335, 55, 330, 330);
 		textArea.setEditable(false);
 		contentPane.add(textArea_1);
 		
@@ -100,12 +100,12 @@ public class C_Info extends JFrame {
 		firmCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"集英樓", "政大小吃部", "盛奇士", "H.I.Feeling", "伊果咖啡", "越南麵包"
 				, "貍66日式炒麵", "新巨輪海海人生", "日式行丼餐車", "胖都日式脆皮雞蛋糕"}));
-		firmCombo.setBounds(360, 400, 130, 40);
+		firmCombo.setBounds(340, 400, 170, 40);
 		contentPane.add(firmCombo);
 		
 		JButton confirmButton = new JButton("確認");
 		confirmButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		confirmButton.setBounds(510, 400, 150, 40);
+		confirmButton.setBounds(540, 400, 120, 40);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String firm = (String)firmCombo.getSelectedItem();

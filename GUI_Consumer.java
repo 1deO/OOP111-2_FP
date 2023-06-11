@@ -49,6 +49,7 @@ public class GUI_Consumer extends JFrame {
 	 * Create the frame.
 	 */
 	public GUI_Consumer(Connection conn) throws SQLException{
+		setTitle("顧客介面");
 		String query;
 		String str = new String();
 		int temp;

@@ -58,6 +58,7 @@ public class S_Order extends JFrame {
 	 * @throws SQLException 
 	 */
 	public S_Order(Connection conn) throws SQLException {
+		setTitle("檢視訂單");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 500);
 		contentPane = new JPanel();
