@@ -72,7 +72,7 @@ public class GUI_Consumer extends JFrame {
 		
 		//Info
 		JButton btnInfo = new JButton("資訊Info");
-		btnInfo.setBounds(225, 400, 160, 40);
+		btnInfo.setBounds(289, 400, 160, 40);
 		btnInfo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -92,7 +92,7 @@ public class GUI_Consumer extends JFrame {
 		
 		//order
 		JButton btnOrder = new JButton("預訂Order");
-		btnOrder.setBounds(425, 400, 180, 40);
+		btnOrder.setBounds(480, 400, 170, 40);
 		btnOrder.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,12 +129,16 @@ public class GUI_Consumer extends JFrame {
 		}
 		contentPane.add(textArea);
 		
-		//spinner_chooseID
-		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
-		spinner.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		spinner.setBounds(30, 400, 50, 40);
-		contentPane.add(spinner);
+		JButton btnReturn = new JButton("返回 Return");
+		btnReturn.setBounds(30, 400, 150, 40);
+		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WelcomePage welcomeFrame = new WelcomePage(conn);
+				welcomeFrame.setVisible(true);
+			}
+		});
+		contentPane.add(btnReturn);
 	}
 	
 	public static String showResultSet(ResultSet result) throws SQLException {

@@ -62,8 +62,8 @@ public class GUI_Seller extends JFrame{
 		panel_1.setBounds(0, 10, 717, 34);
 		panel_1.setLayout(null);
 		
-		firmLabel = new JLabel("選擇你的店家");
-		firmLabel.setBounds(143, 0, 157, 34);
+		firmLabel = new JLabel("選擇你的店家：");
+		firmLabel.setBounds(217, 0, 145, 34);
 		firmLabel.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		panel_1.add(firmLabel);
 		
@@ -72,14 +72,26 @@ public class GUI_Seller extends JFrame{
 		firmCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"集英樓", "政大小吃部", "盛奇士", "H.I.Feeling", "伊果咖啡", "越南麵包"
 				, "貍66日式炒麵", "新巨輪海海人生", "日式行丼餐車", "胖都日式脆皮雞蛋糕"}));
-		firmCombo.setBounds(298, 0, 126, 34);
+		firmCombo.setBounds(362, 0, 126, 34);
 		panel_1.add(firmCombo);
+		
+		JButton btnReturn = new JButton("返回 Return");
+		btnReturn.setBounds(15, 0, 140, 34);
+		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WelcomePage welcomeFrame = new WelcomePage(conn);
+				welcomeFrame.setVisible(true);
+			}
+		});
+		panel_1.add(btnReturn);
+		
 		
 		confirmButton = new JButton("確認");
 		confirmButton.setForeground(new Color(0, 0, 0));
 		confirmButton.setBackground(new Color(250, 250, 250));
 		confirmButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		confirmButton.setBounds(474, 0, 102, 34);
+		confirmButton.setBounds(516, 0, 102, 34);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String firm = (String)firmCombo.getSelectedItem();
@@ -189,7 +201,7 @@ public class GUI_Seller extends JFrame{
 		});
 		delButton.setForeground(new Color(0, 0, 0));
 		delButton.setBackground(new Color(255, 245, 245));
-		delButton.setBounds(160, 320, 135, 45);
+		delButton.setBounds(155, 320, 135, 45);
 		delButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		delButton.setBorder(new CompoundBorder());
 		delButton.addActionListener(new ActionListener() {
@@ -229,7 +241,7 @@ public class GUI_Seller extends JFrame{
 		modButton = new JButton("修改 Edit");
 		modButton.setForeground(new Color(0, 0, 0));
 		modButton.setBackground(new Color(245, 245, 255));
-		modButton.setBounds(315, 320, 120, 45);
+		modButton.setBounds(305, 320, 120, 45);
 		modButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		modButton.setBorder(new CompoundBorder());
 		modButton.addActionListener(new ActionListener() {
@@ -280,8 +292,8 @@ public class GUI_Seller extends JFrame{
 		getContentPane().add(panel_2);
 		
 		//S_order button
-		JButton btnOrder = new JButton("檢視訂單Order");
-		btnOrder.setBounds(460, 320, 180, 45);
+		JButton btnOrder = new JButton("檢視訂單Orders");
+		btnOrder.setBounds(460, 320, 185, 45);
 		btnOrder.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		modButton.setBorder(new CompoundBorder());
 		btnOrder.addActionListener(new ActionListener() {

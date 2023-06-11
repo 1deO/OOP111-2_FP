@@ -33,7 +33,7 @@ public class WelcomePage extends JFrame {
 
 		try {
 			Connection conn = DriverManager.getConnection(url, username, password);
-			System.out.println("DB Connectd");
+			System.out.println("DB Connected");
 
 			WelcomePage frame = new WelcomePage(conn);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,6 +48,7 @@ public class WelcomePage extends JFrame {
 	 * Create the frame.
 	 */
 	public WelcomePage(Connection conn) {
+		setTitle("Welcome page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();
@@ -57,7 +58,7 @@ public class WelcomePage extends JFrame {
 		setContentPane(contentPane);
 
 		JButton btnBuyer = new JButton("買家Buyer");
-		btnBuyer.setBackground(new Color(224, 255, 255));
+		btnBuyer.setBackground(new Color(248, 248, 255));
 		btnBuyer.setBounds(65, 250, 150, 50);
 		btnBuyer.setForeground(new Color(0, 0, 0));
 		btnBuyer.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
@@ -77,7 +78,7 @@ public class WelcomePage extends JFrame {
 		contentPane.add(btnBuyer);
 
 		JButton btnSeller = new JButton("賣家Seller");
-		btnSeller.setBackground(new Color(224, 255, 255));
+		btnSeller.setBackground(new Color(248, 248, 255));
 		btnSeller.setBounds(285, 250, 150, 50);
 		btnSeller.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnSeller.addActionListener(new ActionListener() {
