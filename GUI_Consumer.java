@@ -73,7 +73,7 @@ public class GUI_Consumer extends JFrame {
 		//Info
 		JButton btnInfo = new JButton("資訊Info");
 		btnInfo.setBounds(225, 400, 160, 40);
-		btnInfo.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
+		btnInfo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -93,7 +93,7 @@ public class GUI_Consumer extends JFrame {
 		//order
 		JButton btnOrder = new JButton("預訂Order");
 		btnOrder.setBounds(425, 400, 180, 40);
-		btnOrder.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
+		btnOrder.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -131,9 +131,9 @@ public class GUI_Consumer extends JFrame {
 		
 		//spinner_chooseID
 		JSpinner spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
+		spinner.setModel(new SpinnerNumberModel(1, 1, 10, 1));
 		spinner.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		spinner.setBounds(30, 401, 50, 40);
+		spinner.setBounds(30, 400, 50, 40);
 		contentPane.add(spinner);
 	}
 	
