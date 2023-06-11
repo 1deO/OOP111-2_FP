@@ -9,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Enumeration;
 
-import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -78,10 +76,12 @@ public class C_Payment extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		textArea.setBounds(25, 55, 640, 310);
-		String query1 = "SELECT * FROM `ShoppingCart` WHERE 1";
+		textArea.setEditable(false);
+		String query = "SELECT StoreID,Product,amount,singlePrice FROM `ShoppingCart` WHERE 1";
 		try {
-			ResultSet result1 = stat.executeQuery(query1);
-			textArea.setText(showResultSet_3(result1));
+			ResultSet result = stat.executeQuery(query);
+			textArea.setText(showResultSet_3(result));
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,28 +116,24 @@ public class C_Payment extends JFrame {
 		group.add(rdbtnPaypal);
 		group.add(rdbtnLINEPay);
 		
-		
 		JButton btnPayment = new JButton("確認並返回列表頁");
 		btnPayment.setBounds(455, 400, 205, 40);
 		btnPayment.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		btnPayment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//send order to Seller
-				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
-					
-			    	String paymentWay = "";
-			    	
-				    if (rdbtnCash.isSelected()) {
-				    	paymentWay = "Cash";
-				    }else if (rdbtnPaypal.isSelected()) {
-				    	paymentWay = "Paypal";
-				    }else if (rdbtnLINEPay.isSelected()) {
-				    	paymentWay = "LINE pay";
-				    }
-				}
-				
+		    	String paymentWay="";
+			    if (rdbtnCash.isSelected()) {
+			    	paymentWay = "Cash";
+			    }else if (rdbtnPaypal.isSelected()) {
+			    	paymentWay = "Paypal";
+			    }else if (rdbtnLINEPay.isSelected()) {
+			    	paymentWay = "LINE pay";
+			    }
 				GUI_Consumer buyerFrame;
 				try {
+					String sql = "UPDATE `ShoppingCart` SET `PaymentWay`='"+paymentWay+"' WHERE 1";
+					stat.executeUpdate(sql);
 					buyerFrame = new GUI_Consumer(conn);
 					buyerFrame.setVisible(true);
 				} catch (SQLException e1) {
@@ -153,11 +149,12 @@ public class C_Payment extends JFrame {
 	public static String showResultSet_3(ResultSet result) throws SQLException {
 		ResultSetMetaData metaData = result.getMetaData();
 		int columnCount = metaData.getColumnCount();
+		int total=0;
 		String output = "";
 		while(result.next()){
 			for (int i = 1; i <= columnCount; i++) {
 				if(i%4==1) {
-					output += String.format("ID: %s", result.getString(i));
+					output += String.format("StoreID: %s", result.getString(i));
 				}
 				else if(i%4==2) {
 					output += String.format(" %-5s", result.getString(i));
@@ -166,10 +163,15 @@ public class C_Payment extends JFrame {
 					output += String.format(" *%-5s", result.getString(i));
 				}
 				else {
-					output += String.format(" $%s\n", result.getString(i));
+					total+=result.getInt(i)*result.getInt(i-1);
+					output += String.format(" $%s\n", result.getInt(i)*result.getInt(i-1));
 				}
 			}
 		}
+		for(int i=0;i<60;i++) {
+			output+="-";
+		}
+		output+=String.format("\nTotal price: $%s",total);
 		return output;
 	}
 	
