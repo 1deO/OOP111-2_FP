@@ -72,7 +72,7 @@ public class GUI_Consumer extends JFrame {
 		
 		//Info
 		JButton btnInfo = new JButton("資訊Info");
-		btnInfo.setBounds(95, 400, 115, 40);
+		btnInfo.setBounds(225, 400, 160, 40);
 		btnInfo.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
 		btnInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,28 +89,10 @@ public class GUI_Consumer extends JFrame {
 		});
 		contentPane.add(btnInfo);
 		
-		//reviews
-		JButton btnReviews = new JButton("評價Reviews");
-		btnReviews.setBounds(230, 400, 150, 40);
-		btnReviews.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
-		btnReviews.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				C_Reviews reviewsFrame;
-				try {
-					reviewsFrame = new C_Reviews(conn);
-					reviewsFrame.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		contentPane.add(btnReviews);
 		
 		//order
 		JButton btnOrder = new JButton("預訂Order");
-		btnOrder.setBounds(400, 400, 130, 40);
+		btnOrder.setBounds(425, 400, 180, 40);
 		btnOrder.setFont(new Font("微軟正黑體", Font.PLAIN, 20));
 		btnOrder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -152,7 +134,7 @@ public class GUI_Consumer extends JFrame {
 		JSpinner spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 7, 1));
 		spinner.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		spinner.setBounds(30, 400, 50, 40);
+		spinner.setBounds(30, 401, 50, 40);
 		contentPane.add(spinner);
 		
 	}

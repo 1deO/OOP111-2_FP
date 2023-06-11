@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Enumeration;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -86,24 +88,6 @@ public class C_Payment extends JFrame {
 		}
 		contentPane.add(textArea);
 		
-		JButton btnPayment = new JButton("確認並返回列表頁");
-		btnPayment.setBounds(455, 400, 205, 40);
-		btnPayment.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		btnPayment.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//send order to Seller
-				GUI_Consumer buyerFrame;
-				try {
-					buyerFrame = new GUI_Consumer(conn);
-					buyerFrame.setVisible(true);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
-		contentPane.add(btnPayment);
-		
 		JLabel lblNewLabel_2 = new JLabel("支付方式");
 		lblNewLabel_2.setBounds(30, 375, 80, 40);
 		lblNewLabel_2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
@@ -133,6 +117,52 @@ public class C_Payment extends JFrame {
 		group.add(rdbtnLINEPay);
 		
 		
+		JButton btnPayment = new JButton("確認並返回列表頁");
+		btnPayment.setBounds(455, 400, 205, 40);
+		btnPayment.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnPayment.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//send order to Seller
+				for (Enumeration<AbstractButton> buttons = group.getElements(); buttons.hasMoreElements();) {
+					
+			    	if (rdbtnCash.isSelected()) {
+			        	return "Cash";
+			    	}
+			    	if (rdbtnPaypal.isSelected()) {
+			        	return "Paypal";
+			    	}
+			    	if (rdbtnLINEPay.isSelected()) {
+			        	return "LINE pay";
+			    	}
+				}
+				
+				GUI_Consumer buyerFrame;
+				try {
+					buyerFrame = new GUI_Consumer(conn);
+					buyerFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		contentPane.add(btnPayment);
+		
+	}
+	public String getSelectedButtonText(ButtonGroup buttonGroup) {
+		for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+			
+	    	if (rdbtnCash.isSelected()) {
+	        	return "";
+	    	}
+	    	if (rdbtnPaypal.isSelected()) {
+	        	return "";
+	    	}
+	    	if (rdbtnLINEPay.isSelected()) {
+	        	return "";
+	    	}
+		}
+	    return null;
 	}
 	public static String showResultSet_3(ResultSet result) throws SQLException {
 		ResultSetMetaData metaData = result.getMetaData();
