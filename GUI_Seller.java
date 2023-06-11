@@ -278,7 +278,28 @@ public class GUI_Seller extends JFrame{
 		panel_2.add(modButton);
 		getContentPane().add(panel_1);
 		getContentPane().add(panel_2);
+		
+		//order
+		JButton btnOrder = new JButton("檢視訂單Order");
+		btnOrder.setBounds(460, 320, 180, 45);
+		btnOrder.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		modButton.setBorder(new CompoundBorder());
+		btnOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				S_Order orderFrame;
+				try {
+					orderFrame = new S_Order(conn);
+					orderFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		panel_2.add(btnOrder);
 	}
+		
 	
 	public static String showResultSet1(ResultSet result) throws SQLException {
 		ResultSetMetaData metaData = result.getMetaData();

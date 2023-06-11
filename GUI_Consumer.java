@@ -127,7 +127,6 @@ public class GUI_Consumer extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		contentPane.add(textArea);
 		
 		//spinner_chooseID
@@ -136,8 +135,8 @@ public class GUI_Consumer extends JFrame {
 		spinner.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		spinner.setBounds(30, 401, 50, 40);
 		contentPane.add(spinner);
-		
 	}
+	
 	public static String showResultSet(ResultSet result) throws SQLException {
 			
 			ResultSetMetaData metaData = result.getMetaData();
