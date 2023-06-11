@@ -15,8 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JScrollBar;
+import javax.swing.JSpinner;
 
 public class C_Reviews extends JFrame {
 
@@ -78,14 +80,19 @@ public class C_Reviews extends JFrame {
 		textArea.setBounds(25, 55, 310, 330);
 		contentPane.add(textArea);
 		
-		JLabel lblNewLabel_1 = new JLabel("請輸入您的評價：");
+		JLabel lblNewLabel_1 = new JLabel("評分：（滿分5分）");
 		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(360, 10, 168, 40);
+		lblNewLabel_1.setBounds(360, 10, 231, 40);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("請輸入您的留言：");
+		lblNewLabel_2.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		lblNewLabel_2.setBounds(360, 50, 231, 40);
+		contentPane.add(lblNewLabel_2);
 		
 		JTextArea taInput = new JTextArea();
 		taInput.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		taInput.setBounds(355, 55, 310, 330);
+		taInput.setBounds(355, 100, 310, 285);
 		taInput.setLineWrap(true);//字填滿框就換行
 		contentPane.add(taInput);
 		
@@ -115,5 +122,11 @@ public class C_Reviews extends JFrame {
 			}
 		});
 		contentPane.add(btnSend);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setModel(new SpinnerNumberModel(5, 1, 5, 1));
+		spinner.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		spinner.setBounds(573, 11, 50, 40);
+		contentPane.add(spinner);
 	}
 }
