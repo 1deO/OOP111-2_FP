@@ -79,7 +79,7 @@ public class C_Info extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		textArea.setFont(new Font("Consolas", Font.PLAIN, 16));
 		textArea.setBounds(25, 55, 310, 330);
 		contentPane.add(textArea);
 		
@@ -89,7 +89,7 @@ public class C_Info extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		textArea_1.setFont(new Font("Consolas", Font.PLAIN, 16));
 		textArea_1.setBounds(355, 55, 310, 330);
 		contentPane.add(textArea_1);
 		

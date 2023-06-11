@@ -213,7 +213,7 @@ public class C_Order extends JFrame {
 					while(result.next()){
 							singlePrice = result.getInt(1);
 					}
-					taCart.append(String.format("ID: %s %s \n$%s amount:%s",ID,Product,singlePrice,amount));
+					taCart.append(String.format("ID: %s %s \n$%s amount:%s\n",ID,Product,singlePrice,amount));
 					String sql = "INSERT INTO `ShoppingCart` ( `Product`, `amount`, `singlePrice`) VALUES ('"
 							+ Product + "', '" + amount + "','" + singlePrice + "');";
 					stat.executeUpdate(sql);
