@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -73,17 +75,16 @@ public class C_Payment extends JFrame {
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		textArea.setBounds(25, 55, 330, 310);
+		textArea.setBounds(25, 55, 640, 310);
+		String query1 = "SELECT * FROM `ShoppingCart` WHERE 1";
+		try {
+			ResultSet result1 = stat.executeQuery(query1);
+			textArea.setText(showResultSet_3(result1));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		contentPane.add(textArea);
-		
-		JLabel lblNewLabel_1 = new JLabel("優惠");
-		lblNewLabel_1.setBounds(380, 10, 168, 40);
-		lblNewLabel_1.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		contentPane.add(lblNewLabel_1);
-		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(375, 55, 290, 330);
-		contentPane.add(textArea_1);
 		
 		JButton btnPayment = new JButton("確認並返回列表頁");
 		btnPayment.setBounds(455, 400, 205, 40);
@@ -130,5 +131,30 @@ public class C_Payment extends JFrame {
 		group.add(rdbtnCash);
 		group.add(rdbtnPaypal);
 		group.add(rdbtnLINEPay);
+		
+		
 	}
+	public static String showResultSet_3(ResultSet result) throws SQLException {
+		ResultSetMetaData metaData = result.getMetaData();
+		int columnCount = metaData.getColumnCount();
+		String output = "";
+		while(result.next()){
+			for (int i = 1; i <= columnCount; i++) {
+				if(i%4==1) {
+					output += String.format("ID: %s", result.getString(i));
+				}
+				else if(i%4==2) {
+					output += String.format(" %-5s", result.getString(i));
+				}
+				else if(i%4==3) {
+					output += String.format(" *%-5s", result.getString(i));
+				}
+				else {
+					output += String.format(" $%s\n", result.getString(i));
+				}
+			}
+		}
+		return output;
+	}
+	
 }
