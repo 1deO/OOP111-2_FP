@@ -80,6 +80,7 @@ public class C_Order extends JFrame {
 		JTextArea taMenu = new JTextArea();
 		taMenu.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		taMenu.setBounds(25, 55, 415, 270);
+		taMenu.setEditable(false);
 		contentPane.add(taMenu);
 		
 		JLabel lblNewLabel_1 = new JLabel("購物車 Cart");
@@ -90,6 +91,7 @@ public class C_Order extends JFrame {
 		JTextArea taCart = new JTextArea();
 		taCart.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		taCart.setBounds(460, 55, 205, 330);
+		taCart.setEditable(false);
 		contentPane.add(taCart);
 		
 		JComboBox firmCombo = new JComboBox();
@@ -199,7 +201,7 @@ public class C_Order extends JFrame {
 						
 					}
 					int ID = (Integer)spinner_ID.getValue();
-					String Product=new String();
+					String Product=new String(),StoreID=new String(),StoreName=new String();
 					int amount = (Integer)spinner_q.getValue();
 					int singlePrice = 0;
 					
@@ -213,8 +215,18 @@ public class C_Order extends JFrame {
 					while(result.next()){
 							singlePrice = result.getInt(1);
 					}
-					taCart.append(String.format("ID: %s %s \n$%s amount:%s\n",ID,Product,singlePrice,amount));
-					String sql = "INSERT INTO `ShoppingCart` ( `Product`, `amount`, `singlePrice`) VALUES ('"
+					query = "SELECT StoreID FROM `menu` WHERE ID = '" + ID + "'";
+					result = stat.executeQuery(query);
+					while(result.next()){
+							StoreID = result.getString(1);
+					}
+					query = "SELECT Name FROM `businessInfo` WHERE StoreID = '" + StoreID + "'";
+					result = stat.executeQuery(query);
+					while(result.next()){
+							StoreName = result.getString(1);
+					}
+					taCart.append(String.format("%s *%s\nFrom: %s\nPrice: $%s ID:%s\n",Product,amount,StoreName,singlePrice*amount,ID));
+					String sql = "INSERT INTO `ShoppingCart` (`StoreID`, `Product`, `amount`, `singlePrice`) VALUES ('" + StoreID + "','"
 							+ Product + "', '" + amount + "','" + singlePrice + "');";
 					stat.executeUpdate(sql);
 				} catch (SQLException e1) {
@@ -265,7 +277,7 @@ public class C_Order extends JFrame {
 		while(result.next()){
 			for (int i = 1; i <= columnCount; i++) {
 				if(i%3==1) {
-					output += String.format("ID: %s", result.getString(i));
+					output += String.format("ID:%s", result.getString(i));
 				}
 				else if(i%3==2) {
 					output += String.format(" %-5s", result.getString(i));
