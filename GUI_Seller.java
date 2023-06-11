@@ -142,13 +142,13 @@ public class GUI_Seller extends JFrame{
 		panel_2.add(infoLabel);
 		
 		itemArea = new JTextArea();
-		itemArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
+		itemArea.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 13));
 		itemArea.setBounds(15, 55, 345, 240);
 		itemArea.setEditable(false);
 		panel_2.add(itemArea);
 		
 		infoArea = new JTextArea();
-		infoArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
+		infoArea.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 13));
 		infoArea.setBounds(380, 55, 270, 240);
 		infoArea.setEditable(false);
 		panel_2.add(infoArea);
