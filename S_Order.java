@@ -19,6 +19,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 
+import java.util.ArrayList;
+
 public class S_Order extends JFrame {
 
 	private JPanel contentPane;
@@ -84,12 +86,36 @@ public class S_Order extends JFrame {
 		firmCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
 		firmCombo.setModel(new DefaultComboBoxModel(new String[] {"集英樓", "政大小吃部", "盛奇士", "H.I.Feeling", "伊果咖啡", "越南麵包"
 				, "貍66日式炒麵", "新巨輪海海人生", "日式行丼餐車", "胖都日式脆皮雞蛋糕"}));
-		firmCombo.setBounds(300, 10, 130, 40);
+		firmCombo.setBounds(200, 10, 130, 40);
 		contentPane.add(firmCombo);
+		
+		JComboBox buyerCombo = new JComboBox();
+		buyerCombo.setBackground(new Color(250, 250, 250));
+		buyerCombo.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		String query="SELECT BuyerID FROM `ShoppingCart` WHERE 1";
+		ArrayList<String>buyers=new ArrayList<>();
+		try {
+			ResultSet result = stat.executeQuery(query);
+			ResultSetMetaData metaData = result.getMetaData();
+			int columnCount = metaData.getColumnCount();
+			while(result.next()){
+				for (int i = 1; i <= columnCount; i++) {
+					buyers.add( result.getString(i));
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(String buyer:buyers) {
+			buyerCombo.addItem(buyer);
+		}
+		buyerCombo.setBounds(350, 10, 130, 40);
+		contentPane.add(buyerCombo);
 		
 		JButton confirmButton = new JButton("選取");
 		confirmButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
-		confirmButton.setBounds(450, 10, 80, 40);
+		confirmButton.setBounds(500, 10, 80, 40);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				String firm = (String)firmCombo.getSelectedItem();
@@ -118,6 +144,23 @@ public class S_Order extends JFrame {
 		});
 		contentPane.add(confirmButton);
 
+		JButton clearButton = new JButton("完成訂單");
+		clearButton.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		clearButton.setBounds(500, 400, 150, 45);
+		clearButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				String BuyerID = (String)buyerCombo.getSelectedItem();
+				String query="DELETE FROM `ShoppingCart` WHERE BuyerID = '" + BuyerID + "'AND StoreID = '" + storeID + "'";
+				try {
+					stat.executeUpdate(query);
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		contentPane.add(clearButton);
 		
 		JButton btnReturn = new JButton("返回 Return");
 		btnReturn.setBounds(30, 400, 150, 45);
