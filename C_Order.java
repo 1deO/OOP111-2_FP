@@ -80,6 +80,7 @@ public class C_Order extends JFrame {
 		JTextArea taMenu = new JTextArea();
 		taMenu.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		taMenu.setBounds(25, 55, 415, 270);
+		taMenu.setEditable(false);
 		contentPane.add(taMenu);
 		
 		JLabel lblNewLabel_1 = new JLabel("購物車 Cart");
@@ -90,6 +91,7 @@ public class C_Order extends JFrame {
 		JTextArea taCart = new JTextArea();
 		taCart.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		taCart.setBounds(460, 55, 205, 330);
+		taCart.setEditable(false);
 		contentPane.add(taCart);
 		
 		JComboBox firmCombo = new JComboBox();
@@ -213,7 +215,7 @@ public class C_Order extends JFrame {
 					while(result.next()){
 							singlePrice = result.getInt(1);
 					}
-					taCart.append(String.format("ID: %s %s \n$%s amount:%s",ID,Product,singlePrice,amount));
+					taCart.append(String.format("%s *%s\nTotal: $%s ID:%s\n",Product,amount,singlePrice*amount,ID));
 					String sql = "INSERT INTO `ShoppingCart` ( `Product`, `amount`, `singlePrice`) VALUES ('"
 							+ Product + "', '" + amount + "','" + singlePrice + "');";
 					stat.executeUpdate(sql);

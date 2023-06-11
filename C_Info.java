@@ -81,6 +81,7 @@ public class C_Info extends JFrame {
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		textArea.setBounds(25, 55, 310, 330);
+		textArea.setEditable(false);
 		contentPane.add(textArea);
 		
 		JLabel lblNewLabel_1 = new JLabel("營業資訊");
@@ -91,6 +92,7 @@ public class C_Info extends JFrame {
 		JTextArea textArea_1 = new JTextArea();
 		textArea_1.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		textArea_1.setBounds(355, 55, 310, 330);
+		textArea.setEditable(false);
 		contentPane.add(textArea_1);
 		
 		JComboBox firmCombo = new JComboBox();
