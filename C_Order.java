@@ -226,8 +226,8 @@ public class C_Order extends JFrame {
 							StoreName = result.getString(1);
 					}
 					taCart.append(String.format("%s *%s\nFrom: %s\nPrice: $%s ID:%s\n",Product,amount,StoreName,singlePrice*amount,ID));
-					String sql = "INSERT INTO `ShoppingCart` (`StoreID`, `Product`, `amount`, `singlePrice`) VALUES ('" + StoreID + "','"
-							+ Product + "', '" + amount + "','" + singlePrice + "');";
+					String sql = "INSERT INTO `ShoppingCart` (`StoreID`, `Product`, `amount`, `singlePrice`, `PaymentWay`) VALUES ('" + StoreID + "','"
+							+ Product + "', '" + amount + "','" + singlePrice + "','"+"NA"+"');";
 					stat.executeUpdate(sql);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
