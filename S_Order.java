@@ -1,10 +1,13 @@
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -67,6 +70,23 @@ public class S_Order extends JFrame {
 		taOrder.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		taOrder.setBounds(25, 55, 640, 330);
 		contentPane.add(taOrder);
+		
+		JButton btnReturn = new JButton("返回 Return");
+		btnReturn.setBounds(30, 400, 150, 45);
+		btnReturn.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUI_Seller sellerFrame;
+				try {
+					sellerFrame = new GUI_Seller(conn);
+					sellerFrame.setVisible(true);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		contentPane.add(btnReturn);
 	}
 
 }

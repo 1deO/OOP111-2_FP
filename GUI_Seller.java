@@ -279,7 +279,7 @@ public class GUI_Seller extends JFrame{
 		getContentPane().add(panel_1);
 		getContentPane().add(panel_2);
 		
-		//order
+		//S_order button
 		JButton btnOrder = new JButton("檢視訂單Order");
 		btnOrder.setBounds(460, 320, 180, 45);
 		btnOrder.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
