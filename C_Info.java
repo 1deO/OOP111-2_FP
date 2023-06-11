@@ -122,7 +122,7 @@ public class C_Info extends JFrame {
 					case "胖都日式脆皮雞蛋糕" : storeID = "B10"; break;
 				}
 				String query1 = "SELECT Product,Price FROM `menu` WHERE StoreID = '" + storeID + "'";
-				String query2 = "SELECT Name,Location,Hours,StoreID FROM `businessInfo` WHERE Name = '" + firm + "'";
+				String query2 = "SELECT Name,Location,Hours FROM `businessInfo` WHERE Name = '" + firm + "'";
 				try {
 					ResultSet result1 = stat.executeQuery(query1);
 					textArea.setText(showResultSet_3(result1));
