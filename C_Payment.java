@@ -16,12 +16,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 
 public class C_Payment extends JFrame {
 
 	private JPanel contentPane;
+	private String BuyerID="";
 	Statement stat;
 
 	/**
@@ -75,18 +77,39 @@ public class C_Payment extends JFrame {
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		textArea.setBounds(25, 55, 640, 310);
+		textArea.setBounds(25, 55, 640, 280);
 		textArea.setEditable(false);
-		String query = "SELECT StoreID,Product,amount,singlePrice FROM `ShoppingCart` WHERE 1";
-		try {
-			ResultSet result = stat.executeQuery(query);
-			textArea.setText(showResultSet_3(result));
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		contentPane.add(textArea);
+		
+		JLabel lblUserID = new JLabel("使用者ID: ");
+		lblUserID.setBounds(25, 340, 100, 40);
+		lblUserID.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		contentPane.add(lblUserID);
+		
+		JTextField tfUser = new JTextField();
+		tfUser.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		tfUser.setBounds(125, 340, 130, 40);
+		tfUser.setEditable(true);
+		contentPane.add(tfUser);
+		
+		JButton btnBuyer = new JButton("輸入");
+		btnBuyer.setBounds(260, 340, 100, 40);
+		btnBuyer.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		btnBuyer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BuyerID=tfUser.getText();
+				String query = "SELECT StoreID,Product,amount,singlePrice FROM `ShoppingCart` WHERE BuyerID='"+BuyerID+"'";
+				try {
+					ResultSet result = stat.executeQuery(query);
+					textArea.setText(showResultSet_3(result)+"        Buyer: "+BuyerID);
+					
+				} catch (SQLException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
+			}
+		});
+		contentPane.add(btnBuyer);
 		
 		JLabel lblNewLabel_2 = new JLabel("支付方式");
 		lblNewLabel_2.setBounds(30, 375, 80, 40);
@@ -132,7 +155,7 @@ public class C_Payment extends JFrame {
 			    }
 				GUI_Consumer buyerFrame;
 				try {
-					String sql = "UPDATE `ShoppingCart` SET `PaymentWay`='"+paymentWay+"' WHERE 1";
+					String sql = "UPDATE `ShoppingCart` SET `PaymentWay`='"+paymentWay+"' WHERE BuyerID='"+BuyerID+"'";
 					stat.executeUpdate(sql);
 					buyerFrame = new GUI_Consumer(conn);
 					buyerFrame.setVisible(true);

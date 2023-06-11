@@ -105,7 +105,7 @@ public class S_Order extends JFrame {
 					case "日式行丼餐車" : storeID = "B9"; break;
 					case "胖都日式脆皮雞蛋糕" : storeID = "B10"; break;
 				}
-				String query="SELECT Product,amount,singlePrice,PaymentWay FROM `ShoppingCart` WHERE StoreID = '" + storeID + "'";
+				String query="SELECT Product,amount,singlePrice,BuyerID,PaymentWay FROM `ShoppingCart` WHERE StoreID = '" + storeID + "'";
 				try {
 					ResultSet result = stat.executeQuery(query);
 					taOrder.setText(showResultSet_3(result));
@@ -143,18 +143,21 @@ public class S_Order extends JFrame {
 		String output = "";
 		while(result.next()){
 			for (int i = 1; i <= columnCount; i++) {
-				if(i%4==1) {
+				if(i%5==1) {
 					output += String.format("Product: %s", result.getString(i));
 				}
-				else if(i%4==2) {
+				else if(i%5==2) {
 					output += String.format(" *%-5s", result.getString(i));
 				}
-				else if(i%4==3) {
+				else if(i%5==3) {
 					total +=result.getInt(i)*result.getInt(i-1);
-					output += String.format(" $%-20s", result.getInt(i)*result.getInt(i-1));
+					output += String.format(" $%-10s\n", result.getInt(i)*result.getInt(i-1));
+				}
+				else if(i%5==4){
+					output +=String.format("by:%-10s", result.getString(i));
 				}
 				else {
-					output +=String.format("by:%s\n", result.getString(i));
+					output +=String.format("Use:%s\n", result.getString(i));
 				}
 
 			}

@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JSpinner;
 import javax.swing.JList;
@@ -79,9 +80,20 @@ public class C_Order extends JFrame {
 		
 		JTextArea taMenu = new JTextArea();
 		taMenu.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		taMenu.setBounds(25, 55, 415, 270);
+		taMenu.setBounds(25, 55, 415, 220);
 		taMenu.setEditable(false);
 		contentPane.add(taMenu);
+		
+		JLabel lblUserID = new JLabel("使用者ID: ");
+		lblUserID.setBounds(30, 290, 100, 40);
+		lblUserID.setFont(new Font("Microsoft JhengHei UI", Font.PLAIN, 20));
+		contentPane.add(lblUserID);
+		
+		JTextField tfUser = new JTextField();
+		tfUser.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		tfUser.setBounds(130, 290, 130, 40);
+		tfUser.setEditable(true);
+		contentPane.add(tfUser);
 		
 		JLabel lblNewLabel_1 = new JLabel("購物車 Cart");
 		lblNewLabel_1.setBounds(460, 10, 168, 40);
@@ -201,6 +213,8 @@ public class C_Order extends JFrame {
 						
 					}
 					int ID = (Integer)spinner_ID.getValue();
+					String BuyerID=tfUser.getText();
+					System.out.println(BuyerID);
 					String Product=new String(),StoreID=new String(),StoreName=new String();
 					int amount = (Integer)spinner_q.getValue();
 					int singlePrice = 0;
@@ -225,9 +239,9 @@ public class C_Order extends JFrame {
 					while(result.next()){
 							StoreName = result.getString(1);
 					}
-					taCart.append(String.format("%s *%s\nFrom: %s\nPrice: $%s ID:%s\n",Product,amount,StoreName,singlePrice*amount,ID));
-					String sql = "INSERT INTO `ShoppingCart` (`StoreID`, `Product`, `amount`, `singlePrice`, `PaymentWay`) VALUES ('" + StoreID + "','"
-							+ Product + "', '" + amount + "','" + singlePrice + "','"+"NA"+"');";
+					taCart.append(String.format("%s *%s\nFrom: %s\nPrice: $%s ID:%s\nBuyer: %s",Product,amount,StoreName,singlePrice*amount,ID,BuyerID));
+					String sql = "INSERT INTO `ShoppingCart` (`StoreID`, `Product`, `amount`, `singlePrice`, `PaymentWay`,`BuyerID`) VALUES ('" + StoreID + "','"
+							+ Product + "', '" + amount + "','" + singlePrice + "','NA','" + BuyerID+"');";
 					stat.executeUpdate(sql);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
